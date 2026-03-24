@@ -19,8 +19,6 @@
             color: #fff;
             font-family: 'Space Grotesk', sans-serif;
             overflow-x: hidden;
-            cursor: none;
-            /* Custom glow takes over */
         }
 
         h1,
@@ -31,16 +29,16 @@
 
         /* --- THE MOUSE GLOW --- */
         #cursor-glow {
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(0, 242, 255, 0.12) 0%, transparent 70%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 242, 255, 0.1) 0%, transparent 70%);
             position: fixed;
             top: 0;
             left: 0;
             pointer-events: none;
             z-index: 9999;
-            transform: translate3d(-50%, -50%, 0);
             will-change: transform;
+            transform: translate(-50%, -50%);
         }
 
         .mesh-gradient {
@@ -50,21 +48,23 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: radial-gradient(circle at 50% 50%, rgba(0, 242, 255, 0.04) 0%, transparent 80%);
+            background: radial-gradient(circle at 50% 50%, rgba(0, 242, 255, 0.03) 0%, transparent 80%);
         }
 
         /* --- PROJECT ROWS --- */
         .project-row {
             display: flex;
             align-items: center;
-            padding: 50px 0;
+            padding: 40px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            text-decoration: none;
+            color: inherit;
         }
 
         .project-row:hover {
             background: rgba(255, 255, 255, 0.02);
-            padding-left: 30px;
+            padding-left: 20px;
         }
 
         .project-img-wrapper {
@@ -74,6 +74,7 @@
             border-radius: 12px;
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            background: #111;
         }
 
         .project-img-wrapper img {
@@ -81,14 +82,15 @@
             height: 100%;
             object-fit: cover;
             transition: transform 0.6s ease;
+            display: block;
         }
 
         .project-row:hover .project-img-wrapper img {
-            transform: scale(1.08);
+            transform: scale(1.1);
         }
 
         .project-info {
-            margin-left: 50px;
+            margin-left: 40px;
             opacity: 0.4;
             transition: opacity 0.4s ease;
         }
@@ -98,26 +100,24 @@
         }
 
         .project-title {
-            font-size: 2.8rem;
+            font-size: 2.5rem;
             font-weight: 900;
             letter-spacing: -2px;
             text-transform: uppercase;
             line-height: 1;
         }
 
-        /* Text outline style from first design */
         .text-outline {
             -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
             color: transparent;
         }
 
-        /* Smooth scrollbar */
         ::-webkit-scrollbar {
             width: 4px;
         }
 
         ::-webkit-scrollbar-thumb {
-            background: #222;
+            background: #333;
             border-radius: 10px;
         }
     </style>
@@ -143,97 +143,114 @@
             VISHAL <br> <span class="text-outline">AKODIYA</span>
         </h2>
         <div class="h-[1px] w-20 bg-cyan-500 mb-8"></div>
-        <p class="max-w-xl text-gray-500 text-sm tracking-widest uppercase font-light">
-            Unity Developer // C# Programmer // Custom Editor Tools
+        <p class="max-w-xl text-gray-400 text-sm tracking-widest uppercase font-light">
+            Unity Engine Developer // Systems Architecture
         </p>
-
-        <div class="absolute bottom-10 animate-bounce text-cyan-500/50">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path d="M19 14l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-        </div>
     </header>
 
     <section id="projects" class="py-20 px-10 md:px-32 max-w-7xl mx-auto">
-        <h3 class="text-xs tracking-[0.6em] text-cyan-500 uppercase font-bold mb-20">Deployed Projects</h3>
+        <h3 class="text-xs tracking-[0.6em] text-cyan-500 uppercase font-bold mb-10">Deployments</h3>
 
-        <a href="https://vishal-akodiya.itch.io/eternal-drive" target="_blank" class="project-row group">
+        <a href="https://vishal-akodiya.itch.io/penguin-odyssey" target="_blank" class="project-row">
             <div class="project-img-wrapper">
-                <img src="https://img.itch.zone/aW1nLzExNDM1Njc5LnBuZw==/315x250%23c/G%2F%2F%2F%2F%2F.png"
-                    alt="Eternal Drive">
+                <img src="https://img.itch.zone/aW1nLzI2MTIzMjgzLnBuZw==/315x250%23c/fpfqW2.png"
+                    referrerpolicy="no-referrer" alt="Penguin Odyssey">
+            </div>
+            <div class="project-info">
+                <h3 class="project-title">Penguin Odyssey</h3>
+                <p class="text-gray-500 text-sm mt-3 max-w-sm italic">Narrative-driven journey of a nihilist penguin.
+                    Developed for a 2026 Game Jam.</p>
+            </div>
+        </a>
+
+        <a href="https://vishal-akodiya.itch.io/eternal-drive" target="_blank" class="project-row">
+            <div class="project-img-wrapper">
+                <img src="https://img.itch.zone/aW1nLzI0OTQ1NTIxLnBuZw==/315x250%23c/guU5mh.png"
+                    referrerpolicy="no-referrer" alt="Eternal Drive">
             </div>
             <div class="project-info">
                 <h3 class="project-title">Eternal Drive</h3>
-                <p class="text-gray-500 text-sm mt-3 max-w-sm italic">Racing engine with custom physics and HDRP
-                    lighting pipelines.</p>
+                <p class="text-gray-500 text-sm mt-3 max-w-sm italic">High-speed mountain racing engine with custom
+                    physics logic.</p>
             </div>
         </a>
 
-        <a href="https://vishal-akodiya.itch.io/tikvah-acharona" target="_blank" class="project-row group">
+        <a href="https://vishal-akodiya.itch.io/tikvah-acharona" target="_blank" class="project-row">
             <div class="project-img-wrapper">
-                <img src="https://img.itch.zone/aW1nLzExMjQyMzYyLnBuZw==/315x250%23c/Y6L9%2F%2F.png"
-                    alt="Tikvah Acharona">
+                <img src="https://img.itch.zone/aW1nLzI0Njc0NzM1LnBuZw==/315x250%23c/mUAlvK.png"
+                    referrerpolicy="no-referrer" alt="Tikvah Acharona">
             </div>
             <div class="project-info">
                 <h3 class="project-title">Tikvah Acharona</h3>
-                <p class="text-gray-500 text-sm mt-3 max-w-sm italic">2.5D Puzzle adventure exploring dimension-swapping
-                    mechanics.</p>
+                <p class="text-gray-400 text-sm mt-3 max-w-sm italic">2.5D dimension-swapping puzzle adventure.</p>
             </div>
         </a>
 
-        <a href="https://vishal-akodiya.itch.io/evil-treat" target="_blank" class="project-row group">
+        <a href="https://vishal-akodiya.itch.io/evil-treat" target="_blank" class="project-row">
             <div class="project-img-wrapper">
-                <img src="https://img.itch.zone/aW1nLzExMjk0NTU4LnBuZw==/315x250%23c/P7Xk%2F%2F.png" alt="Evil Treat">
+                <img src="https://img.itch.zone/aW1nLzI0NDYwMDAyLnBuZw==/315x250%23c/iVkrlM.png"
+                    referrerpolicy="no-referrer" alt="Evil Treat">
             </div>
             <div class="project-info">
                 <h3 class="project-title">Evil Treat</h3>
-                <p class="text-gray-500 text-sm mt-3 max-w-sm italic">Atmospheric simulation built on advanced
-                    event-based horror triggers.</p>
+                <p class="text-gray-500 text-sm mt-3 max-w-sm italic">Atmospheric horror simulation with complex event
+                    triggers.</p>
             </div>
         </a>
 
-        <a href="https://vishal-akodiya.itch.io/survivor" target="_blank" class="project-row group">
+        <a href="https://vishal-akodiya.itch.io/survivor" target="_blank" class="project-row">
             <div class="project-img-wrapper">
-                <img src="https://img.itch.zone/aW1nLzExMTE1NjU0LnBuZw==/315x250%23c/F%2F%2F%2F%2F%2F.png"
-                    alt="Survivor">
+                <img src="https://img.itch.zone/aW1nLzI0MzMyMTUwLnBuZw==/315x250%23c/WsM8X%2F.png"
+                    referrerpolicy="no-referrer" alt="Survivor">
             </div>
             <div class="project-info">
                 <h3 class="project-title">Survivor</h3>
-                <p class="text-gray-500 text-sm mt-3 max-w-sm italic">Action shooter featuring optimized AI pathfinding
+                <p class="text-gray-500 text-sm mt-3 max-w-sm italic">Action shooter featuring optimized AI and combat
                     systems.</p>
             </div>
         </a>
 
+        <a href="https://vishal-akodiya.itch.io/campers" target="_blank" class="project-row">
+            <div class="project-img-wrapper">
+                <img src="https://img.itch.zone/aW1nLzI0MTE2NTAyLnBuZw==/315x250%23c/%2FrMAjM.png"
+                    referrerpolicy="no-referrer" alt="Campers">
+            </div>
+            <div class="project-info">
+                <h3 class="project-title">Campers</h3>
+                <p class="text-gray-500 text-sm mt-3 max-w-sm italic">A short, atmospheric horror experience in a
+                    camping setting.</p>
+            </div>
+        </a>
     </section>
 
-    <footer class="py-20 text-center">
-        <div class="opacity-10 font-mono text-[10px] tracking-[1.5em] uppercase mb-10">Systems Nominal // 2026</div>
+    <footer class="py-24 text-center">
         <a href="https://github.com/Vishal-akodiya" target="_blank"
-            class="text-xs font-bold border border-white/10 px-8 py-4 rounded hover:bg-white hover:text-black transition">VIEW
-            REPOS ON GITHUB</a>
+            class="text-2xl font-bold hover:text-cyan-400 transition uppercase italic tracking-tighter">View Engine
+            Tools on GitHub</a>
     </footer>
 
     <script>
         const glow = document.getElementById('cursor-glow');
 
-        // Follow mouse
         document.addEventListener('mousemove', (e) => {
+            const x = e.clientX;
+            const y = e.clientY;
+
             window.requestAnimationFrame(() => {
-                glow.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+                glow.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`;
             });
         });
 
-        // Interactive hover states
         document.querySelectorAll('a').forEach(link => {
             link.addEventListener('mouseenter', () => {
-                glow.style.width = '150px';
-                glow.style.height = '150px';
-                glow.style.background = 'radial-gradient(circle, rgba(0, 242, 255, 0.4) 0%, transparent 70%)';
+                glow.style.width = '250px';
+                glow.style.height = '250px';
+                glow.style.background = 'radial-gradient(circle, rgba(0, 242, 255, 0.3) 0%, transparent 70%)';
             });
             link.addEventListener('mouseleave', () => {
-                glow.style.width = '400px';
-                glow.style.height = '400px';
-                glow.style.background = 'radial-gradient(circle, rgba(0, 242, 255, 0.12) 0%, transparent 70%)';
+                glow.style.width = '500px';
+                glow.style.height = '500px';
+                glow.style.background = 'radial-gradient(circle, rgba(0, 242, 255, 0.1) 0%, transparent 70%)';
             });
         });
     </script>
