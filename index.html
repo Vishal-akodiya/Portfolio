@@ -4,43 +4,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
-    <link rel="stylesheet" href="/style.css">
+    <title>Vishal Akodiya | Game Developer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #ededed;
+            scroll-behavior: smooth;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+            border-color: #3b82f6;
+        }
+    </style>
 </head>
 
-<body>
-    <header id="Home-Header">
-        <a href="#Home-Header" class="HomeLink">
-            <img src="/Images/Home_Icon.png" alt="Home">
-        </a>
-    </header>
-    <Main>
-        <section class="Project-div">
-            <h1>Projects</h1>
-            <p class>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Omnis architecto sapiente, recusandae, facilis asperiores at laborum dolorum ut eligendi rerum minima assumenda deserunt sint officia commodi provident non voluptates possimus!</p>
-            <br>
-            <a href="/Projects.html">Go To Projects</a>
-        </section>
-        <hr>
-        <section class="Project-div">
-            <h1>Experience</h1>
-            <li><b>Unity GameEngine</b></li>
-            <p class>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro, nemo sed iure accusantium doloribus reprehenderit officia eius pariatur ipsa harum delectus libero excepturi autem. Fuga accusamus expedita cumque neque pariatur?</p>
-            <li><b>IT Education</b></li>
-            <p class>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas sapiente fugiat placeat molestiae? Eveniet praesentium veritatis vel aperiam vero laborum eum doloremque, officiis optio ipsam enim sequi quam, impedit voluptatibus.</p>
-        </section>
-        <hr>
-    </Main>
+<body class="font-sans">
 
-    <footer>
-        <div>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/u83VdXAVq08?si=W4p4jUffml8Kaeys" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <nav class="fixed w-full z-50 glass py-4 px-8 flex justify-between items-center">
+        <h1 class="text-xl font-bold tracking-tighter">VISHAL <span class="text-blue-500">AKODIYA</span></h1>
+        <div class="space-x-8 text-sm uppercase tracking-widest font-medium">
+            <a href="#projects" class="hover:text-blue-400 transition">Projects</a>
+            <a href="#tools" class="hover:text-blue-400 transition">Tech Stack</a>
+            <a href="https://vishal-akodiya.itch.io/" target="_blank"
+                class="bg-blue-600 px-4 py-2 rounded text-white hover:bg-blue-500">Itch.io</a>
         </div>
-        <div>
-            <img src="/Images/Ninja_Logo.png " alt="Ninja_Logo ">
+    </nav>
+
+    <header class="h-screen flex flex-col justify-center items-center text-center px-4">
+        <h2
+            class="text-6xl md:text-8xl font-black mb-4 bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent">
+            CREATING WORLDS
+        </h2>
+        <p class="max-w-xl text-gray-400 text-lg">
+            Unity Game Developer specializing in immersive mechanics, custom editor tools, and high-fidelity rendering.
+        </p>
+    </header>
+
+    <section id="projects" class="py-20 px-8 max-w-7xl mx-auto">
+        <h3 class="text-3xl font-bold mb-12 border-l-4 border-blue-500 pl-4">Featured Work</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <div class="project-card glass p-6 rounded-xl">
+                <div class="h-48 bg-gray-800 rounded-lg mb-4 overflow-hidden">
+                    <div
+                        class="w-full h-full bg-gradient-to-br from-blue-900 to-black flex items-center justify-center text-gray-500 text-sm">
+                        Tikvah Acharona Preview</div>
+                </div>
+                <h4 class="text-xl font-bold mb-2">Tikvah Acharona</h4>
+                <p class="text-gray-400 text-sm mb-4">Adventure puzzle game where solving challenges builds strength to
+                    defeat ancient evils.</p>
+                <div class="flex gap-2 mb-6">
+                    <span class="text-[10px] bg-blue-900/30 text-blue-400 px-2 py-1 rounded">UNITY</span>
+                    <span class="text-[10px] bg-purple-900/30 text-purple-400 px-2 py-1 rounded">PUZZLE</span>
+                </div>
+                <a href="https://vishal-akodiya.itch.io/tikvah-acharona"
+                    class="text-blue-400 hover:underline text-sm font-semibold">View on Itch.io →</a>
+            </div>
+
+            <div class="project-card glass p-6 rounded-xl">
+                <div class="h-48 bg-gray-800 rounded-lg mb-4 overflow-hidden">
+                    <div
+                        class="w-full h-full bg-gradient-to-br from-gray-700 to-black flex items-center justify-center text-gray-500 text-sm">
+                        Eternal Drive Preview</div>
+                </div>
+                <h4 class="text-xl font-bold mb-2">Eternal Drive</h4>
+                <p class="text-gray-400 text-sm mb-4">High-speed mountain racing featuring procedural terrain and
+                    physics-based driving mechanics.</p>
+                <div class="flex gap-2 mb-6">
+                    <span class="text-[10px] bg-blue-900/30 text-blue-400 px-2 py-1 rounded">HDRP</span>
+                    <span class="text-[10px] bg-green-900/30 text-green-400 px-2 py-1 rounded">RACING</span>
+                </div>
+                <a href="https://vishal-akodiya.itch.io/eternal-drive"
+                    class="text-blue-400 hover:underline text-sm font-semibold">View on Itch.io →</a>
+            </div>
+
+            <div class="project-card glass p-6 rounded-xl">
+                <div class="h-48 bg-gray-800 rounded-lg mb-4 overflow-hidden">
+                    <div
+                        class="w-full h-full bg-gradient-to-br from-red-900 to-black flex items-center justify-center text-gray-500 text-sm">
+                        Evil Treat Preview</div>
+                </div>
+                <h4 class="text-xl font-bold mb-2">Evil Treat</h4>
+                <p class="text-gray-400 text-sm mb-4">A simulation game where you serve and interact with dark,
+                    supernatural entities.</p>
+                <div class="flex gap-2 mb-6">
+                    <span class="text-[10px] bg-blue-900/30 text-blue-400 px-2 py-1 rounded">SIMULATION</span>
+                    <span class="text-[10px] bg-red-900/30 text-red-400 px-2 py-1 rounded">HORROR</span>
+                </div>
+                <a href="https://vishal-akodiya.itch.io/evil-treat"
+                    class="text-blue-400 hover:underline text-sm font-semibold">View on Itch.io →</a>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="tools" class="py-20 bg-[#0f0f0f]">
+        <div class="max-w-7xl mx-auto px-8 text-center">
+            <h3 class="text-3xl font-bold mb-12">The Toolkit</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="p-4 glass rounded-lg">
+                    <p class="font-bold text-blue-500">C# / .NET</p>
+                    <p class="text-xs text-gray-500">Gameplay Logic</p>
+                </div>
+                <div class="p-4 glass rounded-lg">
+                    <p class="font-bold text-blue-500">Unity Engine</p>
+                    <p class="text-xs text-gray-500">HDRP & URP</p>
+                </div>
+                <div class="p-4 glass rounded-lg">
+                    <p class="font-bold text-blue-500">Editor Scripting</p>
+                    <p class="text-xs text-gray-500">Custom Tooling</p>
+                </div>
+                <div class="p-4 glass rounded-lg">
+                    <p class="font-bold text-blue-500">Networking</p>
+                    <p class="text-xs text-gray-500">Multiplayer Integration</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 text-center text-gray-600 text-sm border-t border-white/5">
+        <p>© 2026 Vishal Akodiya. Made for Gamedev.</p>
+        <div class="mt-4 space-x-4">
+            <a href="mailto:Vishalakodiya000@gmail.com" class="hover:text-white">Email</a>
+            <a href="https://vishal-akodiya.itch.io/" class="hover:text-white">Itch.io</a>
         </div>
     </footer>
+
 </body>
 
 </html>
