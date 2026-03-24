@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vishal Akodiya | Game Dev Portfolio</title>
+    <title>Vishal Akodiya | Game Architect</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;500;700&display=swap');
@@ -19,8 +19,7 @@
             color: #fff;
             font-family: 'Space Grotesk', sans-serif;
             overflow-x: hidden;
-            cursor: none;
-            /* Hide default cursor to use the glow */
+            height: 100%;
         }
 
         h1,
@@ -30,7 +29,20 @@
             font-family: 'Syncopate', sans-serif;
         }
 
-        /* --- BACKGROUND & MOUSE GLOW --- */
+        /* --- THE MOUSE GLOW --- */
+        #cursor-glow {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0, 242, 255, 0.15) 0%, transparent 70%);
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            will-change: transform;
+        }
+
         .mesh-gradient {
             position: fixed;
             top: 0;
@@ -39,77 +51,69 @@
             height: 100%;
             z-index: -1;
             background:
-                radial-gradient(circle at 20% 30%, rgba(0, 242, 255, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(147, 51, 234, 0.1) 0%, transparent 40%);
-            filter: blur(40px);
+                radial-gradient(circle at 10% 20%, rgba(0, 242, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(147, 51, 234, 0.05) 0%, transparent 50%);
         }
 
-        .cursor-glow {
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(0, 242, 255, 0.15) 0%, transparent 70%);
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%, -50%);
-            transition: width 0.3s, height 0.3s;
-        }
-
-        /* --- ACCORDION SHOWCASE --- */
+        /* --- PROJECT ACCORDION WITH LOGOS --- */
         .showcase-container {
             display: flex;
             width: 100%;
-            height: 500px;
+            height: 550px;
             gap: 15px;
-            padding: 20px 0;
         }
 
         .showcase-panel {
-            flex: 0.6;
+            flex: 0.5;
             position: relative;
             overflow: hidden;
-            border-radius: 16px;
-            background: #111;
-            transition: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            background: #0f0f0f;
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+            border: 1px solid rgba(255, 255, 255, 0.03);
             display: flex;
-            align-items: flex-end;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
-        /* Panel Visuals - Placeholder gradients (Replace with screenshots) */
-        .p1 {
-            background: linear-gradient(45deg, #1a1a1a, #00f2ff22);
-        }
-
-        .p2 {
-            background: linear-gradient(45deg, #1a1a1a, #9333ea22);
-        }
-
-        .p3 {
-            background: linear-gradient(45deg, #1a1a1a, #ff005522);
-        }
-
-        .p4 {
-            background: linear-gradient(45deg, #1a1a1a, #00ff6622);
-        }
-
-        .p5 {
-            background: linear-gradient(45deg, #1a1a1a, #facc1522);
-        }
-
+        /* When Expanded */
         .showcase-panel:hover {
             flex: 4;
             border-color: var(--accent);
-            box-shadow: 0 0 40px rgba(0, 242, 255, 0.15);
+            background: #151515;
+        }
+
+        /* Project Logo Styling */
+        .project-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            background: #222;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.5s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            z-index: 2;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .showcase-panel:hover .project-logo {
+            transform: scale(1.2) translateY(-100px);
+            opacity: 0;
+            /* Fades out logo to show text, or keep it if you prefer */
         }
 
         .panel-content {
+            position: absolute;
+            bottom: 0;
             padding: 40px;
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.5s ease 0.2s;
+            transform: translateY(20px);
+            transition: all 0.5s ease 0.3s;
             width: 100%;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 100%);
+            text-align: left;
         }
 
         .showcase-panel:hover .panel-content {
@@ -117,16 +121,16 @@
             transform: translateY(0);
         }
 
+        /* Vertical Text for collapsed state */
         .panel-label {
             position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%) rotate(-90deg);
-            white-space: nowrap;
             font-weight: 700;
-            font-size: 0.8rem;
-            letter-spacing: 0.4em;
-            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.7rem;
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.2);
+            transform: rotate(-90deg);
+            white-space: nowrap;
             transition: 0.3s;
         }
 
@@ -134,147 +138,143 @@
             opacity: 0;
         }
 
-        /* --- TERMINAL WINDOW --- */
-        .terminal-window {
-            background: rgba(10, 10, 10, 0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
+        /* Smooth Scrollbar */
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 10px;
         }
     </style>
 </head>
 
-<body>
+<body class="cursor-none">
 
     <div class="mesh-gradient"></div>
-    <div id="cursor" class="cursor-glow"></div>
+    <div id="cursor-glow"></div>
 
-    <nav class="fixed w-full z-50 px-10 py-6 flex justify-between items-center mix-blend-difference">
-        <div class="nav-logo text-xl font-bold tracking-tighter">VA<span class="text-[#00f2ff]">.</span>DEV</div>
-        <div class="flex space-x-10 text-[10px] uppercase tracking-[0.3em] font-light">
-            <a href="#games" class="hover:text-cyan-400">Games</a>
-            <a href="#github" class="hover:text-cyan-400">Source</a>
-            <a href="mailto:Vishalakodiya000@gmail.com" class="hover:text-cyan-400">Contact</a>
+    <nav class="fixed w-full z-50 px-10 py-8 flex justify-between items-center mix-blend-difference">
+        <div class="nav-logo text-xl font-bold tracking-tighter">VA<span class="text-[#00f2ff]">.</span>SYS</div>
+        <div class="flex space-x-8 text-[10px] uppercase tracking-[0.4em] font-light">
+            <a href="#projects" class="hover:text-cyan-400">Deployments</a>
+            <a href="https://github.com/Vishal-akodiya" target="_blank" class="hover:text-cyan-400">GitHub</a>
         </div>
     </nav>
 
-    <header class="h-screen flex flex-col justify-center items-center text-center px-4">
-        <h1 class="text-6xl md:text-9xl font-black mb-4 tracking-tighter italic">
-            VISHAL <br> <span class="text-transparent"
-                style="-webkit-text-stroke: 1px rgba(255,255,255,0.3);">AKODIYA</span>
-        </h1>
-        <p class="text-cyan-400 font-mono text-xs tracking-widest uppercase mb-10">Systems Engineer // Gameplay
-            Architect</p>
-    </header>
+    <section class="h-[70vh] flex flex-col justify-center items-center text-center">
+        <h1 class="text-6xl md:text-9xl font-black italic tracking-tighter">VISHAL</h1>
+        <p class="text-cyan-400 font-mono text-xs tracking-[0.8em] uppercase mt-4">Game Architecture & Custom Tooling
+        </p>
+    </section>
 
-    <section id="games" class="py-20 px-10 max-w-7xl mx-auto">
-        <h2 class="text-2xl font-bold mb-12 tracking-widest italic border-l-4 border-cyan-500 pl-6 uppercase">Active
-            Deployments</h2>
-
+    <section id="projects" class="py-20 px-6 max-w-[1400px] mx-auto">
         <div class="showcase-container">
-            <div class="showcase-panel p1">
-                <div class="panel-label uppercase">Tikvah Acharona</div>
-                <div class="panel-content">
-                    <h3 class="text-3xl font-bold mb-2">Tikvah Acharona</h3>
-                    <p class="text-gray-400 text-sm mb-6 max-w-md font-light">Puzzle-adventure mechanics with
-                        dimension-swapping logic. Built for narrative depth.</p>
-                    <a href="https://vishal-akodiya.itch.io/tikvah-acharona" target="_blank"
-                        class="text-cyan-400 border border-cyan-400/30 px-6 py-2 rounded-full text-xs font-bold hover:bg-cyan-400 hover:text-black transition">PLAY
-                        PROJECT</a>
-                </div>
-            </div>
 
-            <div class="showcase-panel p2">
-                <div class="panel-label uppercase">Eternal Drive</div>
+            <div class="showcase-panel">
+                <div class="panel-label">ETERNAL DRIVE</div>
+                <div class="project-logo">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2991/2991160.png"
+                        class="w-10 opacity-50 filter invert" alt="Logo">
+                </div>
                 <div class="panel-content">
-                    <h3 class="text-3xl font-bold mb-2">Eternal Drive</h3>
-                    <p class="text-gray-400 text-sm mb-6 max-w-md font-light">Physics-based mountain racing. Custom HDRP
-                        lighting and procedural terrain systems.</p>
+                    <h3 class="text-3xl font-bold mb-2">ETERNAL DRIVE</h3>
+                    <p class="text-gray-400 text-sm mb-6 max-w-md">High-speed mountain racing engine. Technical focus on
+                        procedural spline-based terrain and HDRP optimization.</p>
                     <a href="https://vishal-akodiya.itch.io/eternal-drive" target="_blank"
-                        class="text-cyan-400 border border-cyan-400/30 px-6 py-2 rounded-full text-xs font-bold hover:bg-cyan-400 hover:text-black transition">PLAY
-                        PROJECT</a>
+                        class="bg-cyan-500 text-black px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest">Launch
+                        on Itch</a>
                 </div>
             </div>
 
-            <div class="showcase-panel p3">
-                <div class="panel-label uppercase">Evil Treat</div>
+            <div class="showcase-panel">
+                <div class="panel-label">TIKVAH ACHARONA</div>
+                <div class="project-logo">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3082/3082055.png"
+                        class="w-10 opacity-50 filter invert" alt="Logo">
+                </div>
                 <div class="panel-content">
-                    <h3 class="text-3xl font-bold mb-2">Evil Treat</h3>
-                    <p class="text-gray-400 text-sm mb-6 max-w-md font-light">Eerie simulation mechanics. Focus on
-                        atmosphere and interaction triggers.</p>
+                    <h3 class="text-3xl font-bold mb-2">TIKVAH ACHARONA</h3>
+                    <p class="text-gray-400 text-sm mb-6 max-w-md">2.5D Puzzle Adventure. Custom dimension-swapping
+                        mechanics and narrative interaction systems.</p>
+                    <a href="https://vishal-akodiya.itch.io/tikvah-acharona" target="_blank"
+                        class="bg-cyan-500 text-black px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest">Launch
+                        on Itch</a>
+                </div>
+            </div>
+
+            <div class="showcase-panel">
+                <div class="panel-label">EVIL TREAT</div>
+                <div class="project-logo">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2592/2592317.png"
+                        class="w-10 opacity-50 filter invert" alt="Logo">
+                </div>
+                <div class="panel-content">
+                    <h3 class="text-3xl font-bold mb-2">EVIL TREAT</h3>
+                    <p class="text-gray-400 text-sm mb-6 max-w-md">Horror Simulation. Focusing on event-based triggers
+                        and atmospheric rendering in Unity.</p>
                     <a href="https://vishal-akodiya.itch.io/evil-treat" target="_blank"
-                        class="text-cyan-400 border border-cyan-400/30 px-6 py-2 rounded-full text-xs font-bold hover:bg-cyan-400 hover:text-black transition">PLAY
-                        PROJECT</a>
+                        class="bg-cyan-500 text-black px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest">Launch
+                        on Itch</a>
                 </div>
             </div>
 
-            <div class="showcase-panel p4">
-                <div class="panel-label uppercase">Survivor</div>
+            <div class="showcase-panel">
+                <div class="panel-label">SURVIVOR</div>
+                <div class="project-logo">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2565/2565452.png"
+                        class="w-10 opacity-50 filter invert" alt="Logo">
+                </div>
                 <div class="panel-content">
-                    <h3 class="text-3xl font-bold mb-2">Survivor</h3>
-                    <p class="text-gray-400 text-sm mb-6 max-w-md font-light">2D Sprite-based zombie shooter. Efficient
-                        projectile and AI pathfinding logic.</p>
+                    <h3 class="text-3xl font-bold mb-2">SURVIVOR</h3>
+                    <p class="text-gray-400 text-sm mb-6 max-w-md">2D Zombie shooter survival. Optimized AI pathfinding
+                        and projectile collision systems.</p>
                     <a href="https://vishal-akodiya.itch.io/survivor" target="_blank"
-                        class="text-cyan-400 border border-cyan-400/30 px-6 py-2 rounded-full text-xs font-bold hover:bg-cyan-400 hover:text-black transition">PLAY
-                        PROJECT</a>
+                        class="bg-cyan-500 text-black px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest">Launch
+                        on Itch</a>
                 </div>
             </div>
 
-            <div class="showcase-panel p5">
-                <div class="panel-label uppercase">Campers</div>
-                <div class="panel-content">
-                    <h3 class="text-3xl font-bold mb-2">Campers</h3>
-                    <p class="text-gray-400 text-sm mb-6 max-w-md font-light">Atmospheric horror short. Experimentation
-                        with volumetric fog and spatial audio.</p>
-                    <a href="https://vishal-akodiya.itch.io/campers" target="_blank"
-                        class="text-cyan-400 border border-cyan-400/30 px-6 py-2 rounded-full text-xs font-bold hover:bg-cyan-400 hover:text-black transition">PLAY
-                        PROJECT</a>
-                </div>
-            </div>
         </div>
     </section>
 
-    <section id="github" class="py-32 px-10 max-w-4xl mx-auto">
-        <div class="terminal-window overflow-hidden">
-            <div class="bg-white/5 px-6 py-3 flex gap-2 border-b border-white/10">
-                <div class="w-3 h-3 rounded-full bg-red-500/50"></div>
-                <div class="w-3 h-3 rounded-full bg-yellow-500/50"></div>
-                <div class="w-3 h-3 rounded-full bg-green-500/50"></div>
-            </div>
-            <div class="p-10 font-mono text-sm">
-                <p class="text-cyan-500 mb-2"># Fetching Unity Editor Tools...</p>
-                <p class="text-white/60 mb-6">// Analyzing: MeshCombiner.cs, FolderColorizer.cs, CustomInspector.cs</p>
-                <p class="text-white text-lg mb-8 italic">"Building the tools that build the games."</p>
-                <a href="https://github.com/Vishal-akodiya" target="_blank"
-                    class="inline-block bg-cyan-500 text-black px-8 py-3 font-bold uppercase tracking-widest text-xs hover:scale-105 transition-transform">
-                    View GitHub Repositories
-                </a>
-            </div>
-        </div>
+    <section class="py-40 text-center">
+        <a href="https://github.com/Vishal-akodiya" target="_blank" class="group relative inline-block">
+            <span
+                class="text-4xl md:text-6xl font-bold tracking-tighter group-hover:text-cyan-400 transition-colors">GITHUB
+                SOURCE</span>
+            <div class="h-1 w-0 group-hover:w-full bg-cyan-400 transition-all duration-500 mt-2 mx-auto"></div>
+        </a>
     </section>
-
-    <footer class="py-20 text-center opacity-20 text-[10px] tracking-[1em] uppercase">
-        Systems Nominal // 2026
-    </footer>
 
     <script>
-        const cursor = document.getElementById('cursor');
+        // FIXED MOUSE GLOW LOGIC
+        const glow = document.getElementById('cursor-glow');
+
+        // Listen for all mouse moves on the document
         document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
+            // Using requestAnimationFrame for silky smooth performance
+            window.requestAnimationFrame(() => {
+                glow.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
+            });
         });
 
-        // Effect for links
-        document.querySelectorAll('a').forEach(link => {
-            link.addEventListener('mouseenter', () => {
-                cursor.style.width = '150px';
-                cursor.style.height = '150px';
-                cursor.style.background = 'radial-gradient(circle, rgba(0, 242, 255, 0.4) 0%, transparent 70%)';
+        // Interactive states for hover
+        document.querySelectorAll('a, .showcase-panel').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                glow.style.width = '200px';
+                glow.style.height = '200px';
+                glow.style.background = 'radial-gradient(circle, rgba(0, 242, 255, 0.4) 0%, transparent 70%)';
             });
-            link.addEventListener('mouseleave', () => {
-                cursor.style.width = '300px';
-                cursor.style.height = '300px';
-                cursor.style.background = 'radial-gradient(circle, rgba(0, 242, 255, 0.15) 0%, transparent 70%)';
+            item.addEventListener('mouseleave', () => {
+                glow.style.width = '400px';
+                glow.style.height = '400px';
+                glow.style.background = 'radial-gradient(circle, rgba(0, 242, 255, 0.15) 0%, transparent 70%)';
             });
         });
     </script>
