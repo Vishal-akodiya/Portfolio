@@ -4,141 +4,214 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vishal Akodiya | Game Developer Portfolio</title>
+    <title>Vishal Akodiya | Lead Game Dev Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap');
+
+        :root {
+            --neon-blue: #00f2ff;
+            --dark-bg: #050505;
+        }
+
         body {
-            background-color: #0a0a0a;
-            color: #ededed;
-            scroll-behavior: smooth;
+            background-color: var(--dark-bg);
+            color: #ffffff;
+            font-family: 'Space Grotesk', sans-serif;
+            overflow-x: hidden;
         }
 
-        .glass {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        /* Animated Background Mesh */
+        .mesh-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background:
+                radial-gradient(circle at 20% 30%, rgba(0, 242, 255, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(147, 51, 234, 0.08) 0%, transparent 40%);
         }
 
-        .project-card:hover {
-            transform: translateY(-5px);
-            transition: all 0.3s ease;
-            border-color: #3b82f6;
+        /* Custom Cursor Concept */
+        .cursor-glow {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0, 242, 255, 0.03) 0%, transparent 70%);
+            position: fixed;
+            pointer-events: none;
+            z-index: 0;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Advanced Project Card */
+        .advanced-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .advanced-card:hover {
+            border-color: var(--neon-blue);
+            background: rgba(0, 242, 255, 0.02);
+            box-shadow: 0 0 30px rgba(0, 242, 255, 0.1);
+            transform: translateY(-10px) scale(1.02);
+        }
+
+        /* Shimmer Effect on Hover */
+        .advanced-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            transition: 0.5s;
+        }
+
+        .advanced-card:hover::before {
+            left: 100%;
+        }
+
+        /* Glowing Text */
+        .glow-text:hover {
+            text-shadow: 0 0 10px var(--neon-blue);
+            color: var(--neon-blue);
+        }
+
+        /* Smooth Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #222;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--neon-blue);
         }
     </style>
 </head>
 
-<body class="font-sans">
+<body>
 
-    <nav class="fixed w-full z-50 glass py-4 px-8 flex justify-between items-center">
-        <h1 class="text-xl font-bold tracking-tighter">VISHAL <span class="text-blue-500">AKODIYA</span></h1>
-        <div class="space-x-8 text-sm uppercase tracking-widest font-medium">
-            <a href="#projects" class="hover:text-blue-400 transition">Projects</a>
-            <a href="#tools" class="hover:text-blue-400 transition">Tech Stack</a>
-            <a href="https://vishal-akodiya.itch.io/" target="_blank"
-                class="bg-blue-600 px-4 py-2 rounded text-white hover:bg-blue-500">Itch.io</a>
+    <div class="mesh-gradient"></div>
+    <div id="cursor" class="cursor-glow"></div>
+
+    <nav class="fixed w-full z-50 px-10 py-6 flex justify-between items-center mix-blend-difference">
+        <div class="text-2xl font-bold tracking-tighter glow-text transition-all duration-300">VA.DEV</div>
+        <div class="hidden md:flex space-x-10 text-[10px] uppercase tracking-[0.3em] font-light">
+            <a href="#projects" class="hover:text-cyan-400 transition">Works</a>
+            <a href="#tech" class="hover:text-cyan-400 transition">Systems</a>
+            <a href="mailto:Vishalakodiya000@gmail.com" class="hover:text-cyan-400 transition">Contact</a>
         </div>
     </nav>
 
-    <header class="h-screen flex flex-col justify-center items-center text-center px-4">
-        <h2
-            class="text-6xl md:text-8xl font-black mb-4 bg-gradient-to-b from-white to-gray-500 bg-clip-text text-transparent">
-            CREATING WORLDS
-        </h2>
-        <p class="max-w-xl text-gray-400 text-lg">
-            Unity Game Developer specializing in immersive mechanics, custom editor tools, and high-fidelity rendering.
-        </p>
-    </header>
+    <section class="h-screen flex flex-col justify-center items-center relative px-6">
+        <div data-aos="fade-up" data-aos-duration="1500" class="text-center">
+            <span class="text-cyan-500 text-xs tracking-[0.5em] mb-4 block uppercase font-bold">Unity Technical Artist &
+                Developer</span>
+            <h1 class="text-7xl md:text-9xl font-black italic tracking-tighter mb-6">
+                VISHAL <br> <span class="text-outline text-transparent"
+                    style="-webkit-text-stroke: 1px white;">AKODIYA</span>
+            </h1>
+            <div class="h-[1px] w-24 bg-cyan-500 mx-auto mb-8"></div>
+            <p class="text-gray-500 max-w-lg mx-auto text-sm leading-relaxed">
+                Specializing in HDRP pipeline optimization, custom Editor workflow tools, and 2.5D mechanics.
+            </p>
+        </div>
 
-    <section id="projects" class="py-20 px-8 max-w-7xl mx-auto">
-        <h3 class="text-3xl font-bold mb-12 border-l-4 border-blue-500 pl-4">Featured Work</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="absolute bottom-10 animate-bounce text-cyan-500">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path d="M19 14l-7 7-7-7m14-8l-7 7-7-7" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+        </div>
+    </section>
 
-            <div class="project-card glass p-6 rounded-xl">
-                <div class="h-48 bg-gray-800 rounded-lg mb-4 overflow-hidden">
-                    <div
-                        class="w-full h-full bg-gradient-to-br from-blue-900 to-black flex items-center justify-center text-gray-500 text-sm">
-                        Tikvah Acharona Preview</div>
+    <section id="projects" class="py-32 px-10 max-w-7xl mx-auto">
+        <div class="mb-20" data-aos="fade-right">
+            <h2 class="text-4xl font-bold italic underline decoration-cyan-500 decoration-4 underline-offset-8">
+                PROJECTS_V2.0</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+
+            <div class="advanced-card p-1 rounded-2xl" data-aos="fade-up">
+                <div class="bg-[#0a0a0a] p-8 rounded-2xl h-full flex flex-col">
+                    <div class="aspect-video bg-zinc-900 rounded-lg mb-6 overflow-hidden relative group">
+                        <div class="absolute inset-0 bg-cyan-900/10 group-hover:bg-transparent transition-all"></div>
+                        <div class="flex items-center justify-center h-full text-zinc-800 font-black italic text-4xl">
+                            ETERNAL DRIVE</div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 uppercase tracking-tighter">Eternal Drive</h3>
+                    <p class="text-gray-500 text-sm mb-6 flex-grow">Advanced physics-based driving engine. Implemented
+                        custom spline-based terrain generation and HDRP volumetric lighting.</p>
+                    <div class="flex justify-between items-center border-t border-white/5 pt-6">
+                        <span class="text-[10px] text-cyan-500 font-bold tracking-widest">HDRP / C# / UNITY</span>
+                        <a href="#"
+                            class="text-xs font-bold hover:text-cyan-400 transition underline underline-offset-4">LAUNCH_IT</a>
+                    </div>
                 </div>
-                <h4 class="text-xl font-bold mb-2">Tikvah Acharona</h4>
-                <p class="text-gray-400 text-sm mb-4">Adventure puzzle game where solving challenges builds strength to
-                    defeat ancient evils.</p>
-                <div class="flex gap-2 mb-6">
-                    <span class="text-[10px] bg-blue-900/30 text-blue-400 px-2 py-1 rounded">UNITY</span>
-                    <span class="text-[10px] bg-purple-900/30 text-purple-400 px-2 py-1 rounded">PUZZLE</span>
-                </div>
-                <a href="https://vishal-akodiya.itch.io/tikvah-acharona"
-                    class="text-blue-400 hover:underline text-sm font-semibold">View on Itch.io →</a>
             </div>
 
-            <div class="project-card glass p-6 rounded-xl">
-                <div class="h-48 bg-gray-800 rounded-lg mb-4 overflow-hidden">
-                    <div
-                        class="w-full h-full bg-gradient-to-br from-gray-700 to-black flex items-center justify-center text-gray-500 text-sm">
-                        Eternal Drive Preview</div>
+            <div class="advanced-card p-1 rounded-2xl" data-aos="fade-up" data-aos-delay="200">
+                <div class="bg-[#0a0a0a] p-8 rounded-2xl h-full flex flex-col">
+                    <div class="aspect-video bg-zinc-900 rounded-lg mb-6 flex items-center justify-center">
+                        <div class="text-zinc-800 font-black italic text-4xl">TIKVAH</div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 uppercase tracking-tighter">Tikvah Acharona</h3>
+                    <p class="text-gray-500 text-sm mb-6 flex-grow">Narrative-driven puzzle adventure. Developed a
+                        custom dimension-swapping mechanic and interaction system.</p>
+                    <div class="flex justify-between items-center border-t border-white/5 pt-6">
+                        <span class="text-[10px] text-purple-500 font-bold tracking-widest">URP / NARRATIVE /
+                            2.5D</span>
+                        <a href="#"
+                            class="text-xs font-bold hover:text-cyan-400 transition underline underline-offset-4">LAUNCH_IT</a>
+                    </div>
                 </div>
-                <h4 class="text-xl font-bold mb-2">Eternal Drive</h4>
-                <p class="text-gray-400 text-sm mb-4">High-speed mountain racing featuring procedural terrain and
-                    physics-based driving mechanics.</p>
-                <div class="flex gap-2 mb-6">
-                    <span class="text-[10px] bg-blue-900/30 text-blue-400 px-2 py-1 rounded">HDRP</span>
-                    <span class="text-[10px] bg-green-900/30 text-green-400 px-2 py-1 rounded">RACING</span>
-                </div>
-                <a href="https://vishal-akodiya.itch.io/eternal-drive"
-                    class="text-blue-400 hover:underline text-sm font-semibold">View on Itch.io →</a>
-            </div>
-
-            <div class="project-card glass p-6 rounded-xl">
-                <div class="h-48 bg-gray-800 rounded-lg mb-4 overflow-hidden">
-                    <div
-                        class="w-full h-full bg-gradient-to-br from-red-900 to-black flex items-center justify-center text-gray-500 text-sm">
-                        Evil Treat Preview</div>
-                </div>
-                <h4 class="text-xl font-bold mb-2">Evil Treat</h4>
-                <p class="text-gray-400 text-sm mb-4">A simulation game where you serve and interact with dark,
-                    supernatural entities.</p>
-                <div class="flex gap-2 mb-6">
-                    <span class="text-[10px] bg-blue-900/30 text-blue-400 px-2 py-1 rounded">SIMULATION</span>
-                    <span class="text-[10px] bg-red-900/30 text-red-400 px-2 py-1 rounded">HORROR</span>
-                </div>
-                <a href="https://vishal-akodiya.itch.io/evil-treat"
-                    class="text-blue-400 hover:underline text-sm font-semibold">View on Itch.io →</a>
             </div>
 
         </div>
     </section>
 
-    <section id="tools" class="py-20 bg-[#0f0f0f]">
-        <div class="max-w-7xl mx-auto px-8 text-center">
-            <h3 class="text-3xl font-bold mb-12">The Toolkit</h3>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div class="p-4 glass rounded-lg">
-                    <p class="font-bold text-blue-500">C# / .NET</p>
-                    <p class="text-xs text-gray-500">Gameplay Logic</p>
-                </div>
-                <div class="p-4 glass rounded-lg">
-                    <p class="font-bold text-blue-500">Unity Engine</p>
-                    <p class="text-xs text-gray-500">HDRP & URP</p>
-                </div>
-                <div class="p-4 glass rounded-lg">
-                    <p class="font-bold text-blue-500">Editor Scripting</p>
-                    <p class="text-xs text-gray-500">Custom Tooling</p>
-                </div>
-                <div class="p-4 glass rounded-lg">
-                    <p class="font-bold text-blue-500">Networking</p>
-                    <p class="text-xs text-gray-500">Multiplayer Integration</p>
-                </div>
+    <footer class="py-20 px-10 border-t border-white/5">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+            <div class="text-left">
+                <p class="text-[10px] text-zinc-500 tracking-[0.4em] uppercase mb-2">Systems Status</p>
+                <p class="text-sm font-mono text-green-500">● STABLE - READY FOR DEPLOYMENT</p>
             </div>
-        </div>
-    </section>
-
-    <footer class="py-12 text-center text-gray-600 text-sm border-t border-white/5">
-        <p>© 2026 Vishal Akodiya. Made for Gamedev.</p>
-        <div class="mt-4 space-x-4">
-            <a href="mailto:Vishalakodiya000@gmail.com" class="hover:text-white">Email</a>
-            <a href="https://vishal-akodiya.itch.io/" class="hover:text-white">Itch.io</a>
+            <div class="flex space-x-8 text-xs font-bold uppercase tracking-widest">
+                <a href="https://vishal-akodiya.itch.io/" class="hover:text-cyan-400 transition">Itch.io</a>
+                <a href="#" class="hover:text-cyan-400 transition">GitHub</a>
+                <a href="#" class="hover:text-cyan-400 transition">LinkedIn</a>
+            </div>
         </div>
     </footer>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({ once: true });
+
+        // Mouse Glow Effect
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+    </script>
 </body>
 
 </html>
