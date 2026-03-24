@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vishal Akodiya | Game Developer</title>
+    <title>Vishal Akodiya | Game Dev Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;500;700&display=swap');
 
         :root {
-            --accent: #00ffcc;
-            --bg-dark: #070707;
+            --accent: #00f2ff;
+            --bg-dark: #050505;
         }
 
         body {
@@ -19,6 +19,8 @@
             color: #fff;
             font-family: 'Space Grotesk', sans-serif;
             overflow-x: hidden;
+            cursor: none;
+            /* Hide default cursor to use the glow */
         }
 
         h1,
@@ -28,62 +30,86 @@
             font-family: 'Syncopate', sans-serif;
         }
 
-        /* Expanding Accordion Showcase */
+        /* --- BACKGROUND & MOUSE GLOW --- */
+        .mesh-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background:
+                radial-gradient(circle at 20% 30%, rgba(0, 242, 255, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(147, 51, 234, 0.1) 0%, transparent 40%);
+            filter: blur(40px);
+        }
+
+        .cursor-glow {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 242, 255, 0.15) 0%, transparent 70%);
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s;
+        }
+
+        /* --- ACCORDION SHOWCASE --- */
         .showcase-container {
             display: flex;
             width: 100%;
-            height: 60vh;
-            gap: 10px;
+            height: 500px;
+            gap: 15px;
             padding: 20px 0;
         }
 
         .showcase-panel {
-            flex: 1;
+            flex: 0.6;
             position: relative;
             overflow: hidden;
-            border-radius: 20px;
+            border-radius: 16px;
             background: #111;
-            transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-            cursor: pointer;
+            transition: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
             border: 1px solid rgba(255, 255, 255, 0.05);
             display: flex;
             align-items: flex-end;
         }
 
-        /* Abstract backgrounds for panels - replace with actual game screenshots */
-        .panel-1 {
-            background: linear-gradient(to top, #000, rgba(0, 0, 0, 0)), url('https://images.unsplash.com/photo-1541410965313-d53b3c16ef17?auto=format&fit=crop&q=80&w=800') center/cover;
+        /* Panel Visuals - Placeholder gradients (Replace with screenshots) */
+        .p1 {
+            background: linear-gradient(45deg, #1a1a1a, #00f2ff22);
         }
 
-        .panel-2 {
-            background: linear-gradient(to top, #000, rgba(0, 0, 0, 0)), url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&q=80&w=800') center/cover;
+        .p2 {
+            background: linear-gradient(45deg, #1a1a1a, #9333ea22);
         }
 
-        .panel-3 {
-            background: linear-gradient(to top, #000, rgba(0, 0, 0, 0)), url('https://images.unsplash.com/photo-1505635552518-3448ff116af3?auto=format&fit=crop&q=80&w=800') center/cover;
+        .p3 {
+            background: linear-gradient(45deg, #1a1a1a, #ff005522);
         }
 
-        .panel-4 {
-            background: linear-gradient(to top, #000, rgba(0, 0, 0, 0)), url('https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&q=80&w=800') center/cover;
+        .p4 {
+            background: linear-gradient(45deg, #1a1a1a, #00ff6622);
         }
 
-        .panel-5 {
-            background: linear-gradient(to top, #000, rgba(0, 0, 0, 0)), url('https://images.unsplash.com/photo-1519074069444-1ba4fff66d16?auto=format&fit=crop&q=80&w=800') center/cover;
+        .p5 {
+            background: linear-gradient(45deg, #1a1a1a, #facc1522);
         }
 
         .showcase-panel:hover {
-            flex: 5;
+            flex: 4;
             border-color: var(--accent);
-            box-shadow: 0 0 30px rgba(0, 255, 204, 0.2);
+            box-shadow: 0 0 40px rgba(0, 242, 255, 0.15);
         }
 
         .panel-content {
-            padding: 30px;
+            padding: 40px;
             opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.4s ease 0.2s;
+            transform: translateY(30px);
+            transition: all 0.5s ease 0.2s;
             width: 100%;
-            background: linear-gradient(to top, #000 0%, transparent 100%);
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 100%);
         }
 
         .showcase-panel:hover .panel-content {
@@ -91,160 +117,167 @@
             transform: translateY(0);
         }
 
-        .panel-title-vertical {
+        .panel-label {
             position: absolute;
-            top: 50%;
+            bottom: 30px;
             left: 50%;
-            transform: translate(-50%, -50%) rotate(-90deg);
+            transform: translateX(-50%) rotate(-90deg);
             white-space: nowrap;
-            font-family: 'Syncopate', sans-serif;
             font-weight: 700;
-            font-size: 1.5rem;
-            color: rgba(255, 255, 255, 0.5);
-            transition: all 0.4s ease;
-            letter-spacing: 5px;
+            font-size: 0.8rem;
+            letter-spacing: 0.4em;
+            color: rgba(255, 255, 255, 0.3);
+            transition: 0.3s;
         }
 
-        .showcase-panel:hover .panel-title-vertical {
+        .showcase-panel:hover .panel-label {
             opacity: 0;
         }
 
-        /* Terminal Style GitHub Section */
+        /* --- TERMINAL WINDOW --- */
         .terminal-window {
-            background: #0a0a0a;
-            border: 1px solid #333;
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        .terminal-header {
-            background: #1a1a1a;
-            padding: 10px;
-            border-bottom: 1px solid #333;
-            display: flex;
-            gap: 6px;
-        }
-
-        .terminal-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
+            background: rgba(10, 10, 10, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
         }
     </style>
 </head>
 
 <body>
 
-    <nav
-        class="fixed w-full z-50 px-8 py-6 flex justify-between items-center bg-black/50 backdrop-blur-md border-b border-white/10">
-        <div class="nav-logo text-xl font-bold tracking-tighter hover:text-[#00ffcc] transition-colors cursor-pointer">
-            VA.DEV</div>
-        <div class="flex space-x-6 text-xs uppercase tracking-widest font-bold">
-            <a href="#games" class="hover:text-[#00ffcc] transition">Games</a>
-            <a href="#github" class="hover:text-[#00ffcc] transition">GitHub</a>
-            <a href="https://vishal-akodiya.itch.io/" target="_blank"
-                class="border border-[#00ffcc] text-[#00ffcc] px-4 py-2 rounded hover:bg-[#00ffcc] hover:text-black transition">Itch.io</a>
+    <div class="mesh-gradient"></div>
+    <div id="cursor" class="cursor-glow"></div>
+
+    <nav class="fixed w-full z-50 px-10 py-6 flex justify-between items-center mix-blend-difference">
+        <div class="nav-logo text-xl font-bold tracking-tighter">VA<span class="text-[#00f2ff]">.</span>DEV</div>
+        <div class="flex space-x-10 text-[10px] uppercase tracking-[0.3em] font-light">
+            <a href="#games" class="hover:text-cyan-400">Games</a>
+            <a href="#github" class="hover:text-cyan-400">Source</a>
+            <a href="mailto:Vishalakodiya000@gmail.com" class="hover:text-cyan-400">Contact</a>
         </div>
     </nav>
 
-    <header class="h-screen flex flex-col justify-center items-center text-center px-4 relative">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,255,204,0.05)_0%,transparent_50%)]">
-        </div>
-        <p class="text-[#00ffcc] tracking-[0.4em] text-sm mb-4 uppercase">C# Developer | Unity Engine</p>
-        <h1 class="text-5xl md:text-8xl font-black mb-6 uppercase tracking-tighter">
-            VISHAL <br /> <span class="text-transparent" style="-webkit-text-stroke: 1px white;">AKODIYA</span>
+    <header class="h-screen flex flex-col justify-center items-center text-center px-4">
+        <h1 class="text-6xl md:text-9xl font-black mb-4 tracking-tighter italic">
+            VISHAL <br> <span class="text-transparent"
+                style="-webkit-text-stroke: 1px rgba(255,255,255,0.3);">AKODIYA</span>
         </h1>
-        <p class="max-w-xl text-gray-400 text-sm leading-relaxed mb-8">
-            Building immersive 2.5D mechanics, engineering custom workflow pipelines, and bringing advanced technical
-            art to life. <br> WASD to move. Q to swap dimensions. Space to jump. E to interact.
-        </p>
+        <p class="text-cyan-400 font-mono text-xs tracking-widest uppercase mb-10">Systems Engineer // Gameplay
+            Architect</p>
     </header>
 
-    <section id="games" class="py-20 px-8 max-w-[1400px] mx-auto">
-        <h2 class="text-3xl font-bold mb-10 tracking-widest text-center">THE ARCHIVE</h2>
+    <section id="games" class="py-20 px-10 max-w-7xl mx-auto">
+        <h2 class="text-2xl font-bold mb-12 tracking-widest italic border-l-4 border-cyan-500 pl-6 uppercase">Active
+            Deployments</h2>
 
         <div class="showcase-container">
-            <a href="https://vishal-akodiya.itch.io/tikvah-acharona" target="_blank" class="showcase-panel panel-1">
-                <div class="panel-title-vertical">TIKVAH</div>
+            <div class="showcase-panel p1">
+                <div class="panel-label uppercase">Tikvah Acharona</div>
                 <div class="panel-content">
-                    <h3 class="text-3xl text-white mb-2">Tikvah Acharona</h3>
-                    <p class="text-gray-300 text-sm mb-4">Adventure puzzle solving. Get strong, defeat the evil.</p>
-                    <span class="bg-[#00ffcc]/20 text-[#00ffcc] text-xs px-3 py-1 rounded tracking-widest">LAUNCH
-                        PROJECT ↗</span>
+                    <h3 class="text-3xl font-bold mb-2">Tikvah Acharona</h3>
+                    <p class="text-gray-400 text-sm mb-6 max-w-md font-light">Puzzle-adventure mechanics with
+                        dimension-swapping logic. Built for narrative depth.</p>
+                    <a href="https://vishal-akodiya.itch.io/tikvah-acharona" target="_blank"
+                        class="text-cyan-400 border border-cyan-400/30 px-6 py-2 rounded-full text-xs font-bold hover:bg-cyan-400 hover:text-black transition">PLAY
+                        PROJECT</a>
                 </div>
-            </a>
+            </div>
 
-            <a href="https://vishal-akodiya.itch.io/eternal-drive" target="_blank" class="showcase-panel panel-2">
-                <div class="panel-title-vertical">ETERNAL</div>
+            <div class="showcase-panel p2">
+                <div class="panel-label uppercase">Eternal Drive</div>
                 <div class="panel-content">
-                    <h3 class="text-3xl text-white mb-2">Eternal Drive</h3>
-                    <p class="text-gray-300 text-sm mb-4">High-octane mountain racing physics and mechanics.</p>
-                    <span class="bg-[#00ffcc]/20 text-[#00ffcc] text-xs px-3 py-1 rounded tracking-widest">LAUNCH
-                        PROJECT ↗</span>
+                    <h3 class="text-3xl font-bold mb-2">Eternal Drive</h3>
+                    <p class="text-gray-400 text-sm mb-6 max-w-md font-light">Physics-based mountain racing. Custom HDRP
+                        lighting and procedural terrain systems.</p>
+                    <a href="https://vishal-akodiya.itch.io/eternal-drive" target="_blank"
+                        class="text-cyan-400 border border-cyan-400/30 px-6 py-2 rounded-full text-xs font-bold hover:bg-cyan-400 hover:text-black transition">PLAY
+                        PROJECT</a>
                 </div>
-            </a>
+            </div>
 
-            <a href="https://vishal-akodiya.itch.io/evil-treat" target="_blank" class="showcase-panel panel-3">
-                <div class="panel-title-vertical">EVIL TREAT</div>
+            <div class="showcase-panel p3">
+                <div class="panel-label uppercase">Evil Treat</div>
                 <div class="panel-content">
-                    <h3 class="text-3xl text-white mb-2">Evil Treat</h3>
-                    <p class="text-gray-300 text-sm mb-4">A dark simulation where you serve evil entities.</p>
-                    <span class="bg-[#00ffcc]/20 text-[#00ffcc] text-xs px-3 py-1 rounded tracking-widest">LAUNCH
-                        PROJECT ↗</span>
+                    <h3 class="text-3xl font-bold mb-2">Evil Treat</h3>
+                    <p class="text-gray-400 text-sm mb-6 max-w-md font-light">Eerie simulation mechanics. Focus on
+                        atmosphere and interaction triggers.</p>
+                    <a href="https://vishal-akodiya.itch.io/evil-treat" target="_blank"
+                        class="text-cyan-400 border border-cyan-400/30 px-6 py-2 rounded-full text-xs font-bold hover:bg-cyan-400 hover:text-black transition">PLAY
+                        PROJECT</a>
                 </div>
-            </a>
+            </div>
 
-            <a href="https://vishal-akodiya.itch.io/survivor" target="_blank" class="showcase-panel panel-4">
-                <div class="panel-title-vertical">SURVIVOR</div>
+            <div class="showcase-panel p4">
+                <div class="panel-label uppercase">Survivor</div>
                 <div class="panel-content">
-                    <h3 class="text-3xl text-white mb-2">Survivor</h3>
-                    <p class="text-gray-300 text-sm mb-4">Fast-paced 2D action zombie shooter survival.</p>
-                    <span class="bg-[#00ffcc]/20 text-[#00ffcc] text-xs px-3 py-1 rounded tracking-widest">LAUNCH
-                        PROJECT ↗</span>
+                    <h3 class="text-3xl font-bold mb-2">Survivor</h3>
+                    <p class="text-gray-400 text-sm mb-6 max-w-md font-light">2D Sprite-based zombie shooter. Efficient
+                        projectile and AI pathfinding logic.</p>
+                    <a href="https://vishal-akodiya.itch.io/survivor" target="_blank"
+                        class="text-cyan-400 border border-cyan-400/30 px-6 py-2 rounded-full text-xs font-bold hover:bg-cyan-400 hover:text-black transition">PLAY
+                        PROJECT</a>
                 </div>
-            </a>
+            </div>
 
-            <a href="https://vishal-akodiya.itch.io/campers" target="_blank" class="showcase-panel panel-5">
-                <div class="panel-title-vertical">CAMPERS</div>
+            <div class="showcase-panel p5">
+                <div class="panel-label uppercase">Campers</div>
                 <div class="panel-content">
-                    <h3 class="text-3xl text-white mb-2">CAMPERS</h3>
-                    <p class="text-gray-300 text-sm mb-4">A short, atmospheric horror camping adventure.</p>
-                    <span class="bg-[#00ffcc]/20 text-[#00ffcc] text-xs px-3 py-1 rounded tracking-widest">LAUNCH
-                        PROJECT ↗</span>
+                    <h3 class="text-3xl font-bold mb-2">Campers</h3>
+                    <p class="text-gray-400 text-sm mb-6 max-w-md font-light">Atmospheric horror short. Experimentation
+                        with volumetric fog and spatial audio.</p>
+                    <a href="https://vishal-akodiya.itch.io/campers" target="_blank"
+                        class="text-cyan-400 border border-cyan-400/30 px-6 py-2 rounded-full text-xs font-bold hover:bg-cyan-400 hover:text-black transition">PLAY
+                        PROJECT</a>
                 </div>
-            </a>
+            </div>
         </div>
     </section>
 
-    <section id="github" class="py-32 px-8 max-w-5xl mx-auto">
-        <div class="terminal-window">
-            <div class="terminal-header">
-                <div class="terminal-dot bg-red-500"></div>
-                <div class="terminal-dot bg-yellow-500"></div>
-                <div class="terminal-dot bg-green-500"></div>
-                <div class="ml-4 text-xs text-gray-500 font-mono">vishal-akodiya/repositories</div>
+    <section id="github" class="py-32 px-10 max-w-4xl mx-auto">
+        <div class="terminal-window overflow-hidden">
+            <div class="bg-white/5 px-6 py-3 flex gap-2 border-b border-white/10">
+                <div class="w-3 h-3 rounded-full bg-red-500/50"></div>
+                <div class="w-3 h-3 rounded-full bg-yellow-500/50"></div>
+                <div class="w-3 h-3 rounded-full bg-green-500/50"></div>
             </div>
-            <div class="p-8 font-mono text-sm leading-loose">
-                <p class="text-[#00ffcc]">> Initiating connection to GitHub...</p>
-                <p class="text-gray-300">> Loading Unity Custom Editor Scripts...</p>
-                <p class="text-gray-300">> Fetching Mesh Combiner tools and Hierarchy Colorizers...</p>
-                <br>
-                <p class="text-white">Review the source code, custom tools, and systems architecture powering the
-                    experiences above.</p>
-                <br>
+            <div class="p-10 font-mono text-sm">
+                <p class="text-cyan-500 mb-2"># Fetching Unity Editor Tools...</p>
+                <p class="text-white/60 mb-6">// Analyzing: MeshCombiner.cs, FolderColorizer.cs, CustomInspector.cs</p>
+                <p class="text-white text-lg mb-8 italic">"Building the tools that build the games."</p>
                 <a href="https://github.com/Vishal-akodiya" target="_blank"
-                    class="inline-block mt-4 bg-white text-black font-bold px-8 py-4 hover:bg-[#00ffcc] transition-colors uppercase tracking-widest text-xs">
-                    Access GitHub Profile _
+                    class="inline-block bg-cyan-500 text-black px-8 py-3 font-bold uppercase tracking-widest text-xs hover:scale-105 transition-transform">
+                    View GitHub Repositories
                 </a>
             </div>
         </div>
     </section>
 
-    <footer
-        class="py-8 text-center border-t border-white/10 text-xs text-gray-600 uppercase tracking-widest font-mono mt-20">
-        <p>© 2026 VISHAL AKODIYA. SYSTEMS NOMINAL.</p>
+    <footer class="py-20 text-center opacity-20 text-[10px] tracking-[1em] uppercase">
+        Systems Nominal // 2026
     </footer>
 
+    <script>
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Effect for links
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                cursor.style.width = '150px';
+                cursor.style.height = '150px';
+                cursor.style.background = 'radial-gradient(circle, rgba(0, 242, 255, 0.4) 0%, transparent 70%)';
+            });
+            link.addEventListener('mouseleave', () => {
+                cursor.style.width = '300px';
+                cursor.style.height = '300px';
+                cursor.style.background = 'radial-gradient(circle, rgba(0, 242, 255, 0.15) 0%, transparent 70%)';
+            });
+        });
+    </script>
 </body>
 
 </html>
