@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penguin Odyssey</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Space+Grotesk:wght@300;500;700&display=swap');
+
+        :root {
+            --accent: #00f2ff;
+            --bg-dark: #050505;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: #fff;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        h1,
+        .section-title {
+            font-family: 'Syncopate', sans-serif;
+        }
+
+        .text-outline {
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+            color: transparent;
+        }
+
+        .border-glow {
+            border: 1px solid rgba(0, 242, 255, 0.2);
+            transition: 0.3s;
+        }
+
+        .border-glow:hover {
+            border: 1px solid rgba(0, 242, 255, 1);
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="p-6 md:p-10 flex justify-between items-center border-b border-white/5">
+        <a href="index.html"
+            class="text-[10px] uppercase tracking-[0.4em] text-gray-400 hover:text-cyan-400 transition">← Return to
+            Hangar</a>
+        <div class="text-[10px] uppercase tracking-[0.4em] text-cyan-500 font-bold">Project_Log // 001</div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-6 py-12 md:py-20">
+        <header class="mb-20">
+            <h1 class="text-5xl md:text-8xl font-black uppercase italic tracking-tighter leading-none mb-6">
+                PENGUIN <br> <span class="text-outline">ODYSSEY</span>
+            </h1>
+            <div class="flex flex-wrap gap-4 mt-6">
+                <span
+                    class="px-3 py-1 border border-cyan-500/30 text-[9px] uppercase tracking-widest text-cyan-400">Unity
+                    2022.3 LTS</span>
+                <span class="px-3 py-1 border border-white/10 text-[9px] uppercase tracking-widest text-gray-400">C#
+                    Core Systems</span>
+                <span class="px-3 py-1 border border-white/10 text-[9px] uppercase tracking-widest text-gray-400">Game
+                    Jam 2026</span>
+            </div>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+            <div class="lg:col-span-4 space-y-12">
+                <section>
+                    <h3 class="section-title text-[10px] text-cyan-500 uppercase mb-4 tracking-widest">Architectural
+                        Summary</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed tracking-wide">
+                        Inspired by the viral moments that moved the internet, this is a cozy, heartfelt journey about
+                        three unlikely friends
+                        finding their way Home:
+
+                        The Nihilist Penguin: Walking toward a peak he was told he’d never reach.
+                        Wilson the Cock: Finding courage after being rescued from the river.
+                        Punch the Monkey: A lonely soul trading his heartache for a new family.
+                    </p>
+                </section>
+
+                <section class="bg-white/5 p-6 border-l-2 border-cyan-500">
+                    <h3 class="section-title text-[10px] text-white uppercase mb-4 tracking-widest italic">Core
+                        Deliverables</h3>
+                    <ul class="text-[11px] space-y-3 uppercase tracking-tighter text-gray-300">
+                        <li>• Non-linear Dialogue Graph</li>
+                        <li>• Physics-based Character Controller</li>
+                        <li>• Dynamic Environment Fog (HDRP)</li>
+                        <li>• Optimized Draw-Call Mesh Combining</li>
+                    </ul>
+                </section>
+
+                <a href="https://itch.io" target="_blank"
+                    class="block w-full py-4 bg-cyan-500 text-black text-center text-xs font-bold uppercase tracking-[0.3em] hover:bg-white transition">
+                    Launch Execution
+                </a>
+            </div>
+
+            <div class="lg:col-span-8 space-y-10">
+                <div class="aspect-video bg-zinc-900 border-glow overflow-hidden">
+                    <img src="https://img.itch.zone/aW1nLzI2MTIzMjgzLnBuZw==/315x250%23c/fpfqW2.png" alt="Project Hero"
+                        class="w-full h-full object-cover">
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="aspect-square bg-zinc-900 border-glow"></div>
+                    <div class="aspect-square bg-zinc-900 border-glow"></div>
+                </div>
+
+                <article class="prose prose-invert max-w-none">
+                    <h3 class="section-title text-xl text-white uppercase italic tracking-tighter">System Breakdown</h3>
+                    <p class="text-gray-400 text-sm mt-4 leading-loose">
+
+                    </p>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-20 border-t border-white/5 text-center">
+        <p class="opacity-20 text-[8px] tracking-[1em] uppercase">Architecture Verified // 2026</p>
+    </footer>
+
+</body>
+
+</html>
