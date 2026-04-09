@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noah's Ark | Case Study</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Space+Grotesk:wght@300;500;700&display=swap');
+
+        :root {
+            --accent: #00f2ff;
+            --bg-dark: #050505;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: #fff;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        h1,
+        .section-title {
+            font-family: 'Syncopate', sans-serif;
+        }
+
+        .text-outline {
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+            color: transparent;
+        }
+
+        .border-glow {
+            border: 1px solid rgba(251, 191, 36, 0.2);
+            transition: 0.3s;
+        }
+
+        .border-glow:hover {
+            border: 1px solid rgba(251, 191, 36, 1);
+            box-shadow: 0 0 15px rgba(251, 191, 36, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="p-6 md:p-10 flex justify-between items-center border-b border-white/5">
+        <a href="../index.html"
+            class="text-[10px] uppercase tracking-[0.4em] text-gray-400 hover:text-amber-400 transition">← Return to
+            Hangar</a>
+        <div class="text-[10px] uppercase tracking-[0.4em] text-amber-500 font-bold">Project_Log // 000</div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-6 py-12 md:py-20">
+        <header class="mb-20">
+            <h1
+                class="text-5xl md:text-8xl font-black uppercase italic tracking-tighter leading-none mb-6 text-amber-400 text-outline">
+                NOAH'S <br> ARK
+            </h1>
+            <div class="flex flex-wrap gap-4 mt-6">
+                <span
+                    class="px-3 py-1 border border-amber-500/30 text-[9px] uppercase tracking-widest text-amber-400">Unity
+                    3D (URP)</span>
+                <span
+                    class="px-3 py-1 border border-white/10 text-[9px] uppercase tracking-widest text-gray-400">Time-Management
+                    Logic</span>
+                <span class="px-3 py-1 border border-white/10 text-[9px] uppercase tracking-widest text-gray-400">Easter
+                    Jam (1st Place)</span>
+            </div>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+            <div class="lg:col-span-4 space-y-12">
+
+                <div class="mb-6 p-3 border border-amber-400/50 bg-amber-400/5 shadow-[0_0_15px_rgba(251,191,36,0.15)]">
+                    <div class="flex items-center gap-3">
+                        <span class="text-amber-400 text-xl">🏆</span>
+                        <div>
+                            <p class="text-[9px] uppercase tracking-[0.2em] text-amber-400 font-bold">Award Distinction
+                            </p>
+                            <p class="text-xs uppercase font-black italic">1st Place Champion // Easter Jam</p>
+                        </div>
+                    </div>
+                </div>
+
+                <section>
+                    <h3 class="section-title text-[10px] text-amber-500 uppercase mb-4 tracking-widest">Architectural
+                        Summary</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed tracking-wide">
+                        A chaotic, first-person survival simulation developed for the Easter Jam. The system demands
+                        high-pressure multitasking, balancing hull integrity with complex entity feeding requirements.
+                    </p>
+                </section>
+
+                <section class="bg-white/5 p-4 border border-white/10 rounded-sm">
+                    <h3 class="section-title text-[9px] text-amber-500 uppercase mb-3 tracking-widest">Technical
+                        Manifest</h3>
+                    <table class="w-full text-[10px] uppercase tracking-tighter text-gray-400">
+                        <tr class="border-b border-white/5">
+                            <td class="py-2 font-bold">Pipeline</td>
+                            <td class="py-2 text-right text-white">URP</td>
+                        </tr>
+                        <tr class="border-b border-white/5">
+                            <td class="py-2 font-bold">Perspective</td>
+                            <td class="py-2 text-right text-white">1st-Person 3D</td>
+                        </tr>
+                        <tr>
+                            <td class="py-2 font-bold">Core Loop</td>
+                            <td class="py-2 text-right text-white">State-Driven Task Queuing</td>
+                        </tr>
+                    </table>
+                </section>
+
+                <a href="https://vishal-akodiya.itch.io/noahs-ark" target="_blank"
+                    class="block w-full py-4 bg-amber-500 text-black text-center text-xs font-bold uppercase tracking-[0.3em] hover:bg-white transition">
+                    Launch Execution
+                </a>
+            </div>
+
+            <div class="lg:col-span-8 space-y-10">
+                <div class="aspect-video bg-zinc-900 border-glow overflow-hidden">
+                    <img src="https://img.itch.zone/aW1nLzI2NDc3Nzg5LnBuZw==/315x250%23c/UKvtAc.png" alt="Noah's Ark"
+                        class="w-full h-full object-cover">
+                </div>
+
+                <article class="prose prose-invert max-w-none">
+                    <h3 class="section-title text-xl text-white uppercase italic tracking-tighter">System Breakdown</h3>
+                    <p class="text-gray-400 text-sm mt-4 leading-loose">
+                        The primary technical challenge was managing overlapping, urgent game states within a strict
+                        3-minute survival window. I engineered a responsive interaction system that maps specific
+                        inventory types (Hay, Meat, Fish, etc.) to distinct entity hunger states, coupled with
+                        randomized hull-breach events. Running this logic cleanly alongside a first-person controller in
+                        URP ensured fluid performance without sacrificing the tension of the game loop.
+                    </p>
+                </article>
+            </div>
+        </div>
+    </main>
+
+</body>
+
+</html>
