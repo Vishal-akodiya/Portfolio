@@ -102,9 +102,21 @@
             </div>
 
             <div class="lg:col-span-8 space-y-10">
-                <div class="aspect-video bg-zinc-900 border-glow overflow-hidden">
-                    <img src="https://img.itch.zone/aW1nLzI2MTIzMjgzLnBuZw==/315x250%23c/fpfqW2.png" alt="Project Hero"
+                <div class="aspect-video bg-zinc-900 border-glow overflow-hidden relative group">
+                    <video autoplay loop muted playsinline
+                        poster="https://img.itch.zone/aW1nLzI2MTIzMjgzLnBuZw==/315x250%23c/fpfqW2.png"
                         class="w-full h-full object-cover">
+                        <!-- CHANGED THE SRC LINK BELOW -->
+                        <source
+                            src="https://raw.githubusercontent.com/Vishal-akodiya/VideoHosting/blob/main/Penguin-Odyssey-Showcase.mp4"
+                            type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+
+                    <div
+                        class="absolute bottom-3 right-3 bg-black/60 backdrop-blur-md border border-white/10 px-3 py-1 text-[8px] font-mono uppercase tracking-widest text-cyan-400">
+                        LIVE_FEED // 30 FPS
+                    </div>
                 </div>
 
                 <article class="prose prose-invert max-w-none">
