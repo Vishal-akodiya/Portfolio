@@ -5,6 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vishal Akodiya | Game Architect</title>
+
+    <meta name="description"
+        content="Vishal Akodiya - Unity Engine Developer & Systems Architect specializing in procedural generation, AI, and technical game design.">
+
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://vishal-akodiya.github.io/">
+    <meta property="og:title" content="Vishal Akodiya | Game Architect">
+    <meta property="og:description"
+        content="Unity Engine Developer & Systems Architect. View technical breakdowns of award-winning game jam projects.">
+    <!-- Replace with a link to a nice screenshot of your portfolio -->
+    <meta property="og:image"
+        content="https://raw.githubusercontent.com/Vishal-akodiya/YOUR_REPO/main/portfolio-preview.jpg">
+
     <link rel="icon" type="image/png" href="Logo.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -385,6 +399,8 @@
     <script>
         const glow = document.getElementById('cursor-glow');
         if (window.matchMedia("(pointer: fine)").matches) {
+            // Only hide the default cursor if the script runs
+            document.body.style.cursor = 'none';
             document.addEventListener('mousemove', (e) => {
                 const x = e.clientX;
                 const y = e.clientY;
