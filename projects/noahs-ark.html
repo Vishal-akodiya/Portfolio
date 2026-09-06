@@ -119,6 +119,15 @@
 
             <div class="lg:col-span-8 space-y-10">
                 <div class="aspect-video bg-zinc-900 border-glow overflow-hidden relative group">
+                    <div
+                        class="video-loader absolute inset-0 flex flex-col items-center justify-center bg-black/80 backdrop-blur-sm z-20 transition-opacity duration-500">
+                        <div
+                            class="w-8 h-8 border-2 border-cyan-500/20 border-t-cyan-500 rounded-full animate-spin mb-3 shadow-[0_0_10px_rgba(0,242,255,0.5)]">
+                        </div>
+                        <span
+                            class="text-[8px] font-mono uppercase tracking-[0.4em] text-cyan-400 animate-pulse">Establishing_Link...</span>
+                    </div>
+
                     <video autoplay loop muted playsinline
                         poster="https://img.itch.zone/aW1nLzI2NDc3Nzg5LnBuZw==/315x250%23c/UKvtAc.png"
                         class="w-full h-full object-cover">
@@ -150,5 +159,38 @@
     </main>
 
 </body>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // Find all video wrappers on the page
+        const videoWrappers = document.querySelectorAll('.video-wrapper');
+
+        videoWrappers.forEach(wrapper => {
+            const video = wrapper.querySelector('video');
+            const loader = wrapper.querySelector('.video-loader');
+
+            if (!video || !loader) return;
+
+            // Hide loader when the video has enough data to start playing
+            video.addEventListener('canplay', () => {
+                loader.style.opacity = '0';
+                setTimeout(() => loader.style.display = 'none', 500); // Wait for fade out, then remove from layout
+            });
+
+            // Show loader again if the video stalls to buffer
+            video.addEventListener('waiting', () => {
+                loader.style.display = 'flex';
+                // Tiny delay to allow display:flex to apply before animating opacity
+                setTimeout(() => loader.style.opacity = '1', 10);
+            });
+
+            // Safety check: If the video loaded instantly from the browser cache before the script ran
+            if (video.readyState >= 3) {
+                loader.style.opacity = '0';
+                loader.style.display = 'none';
+            }
+        });
+    });
+</script>
 
 </html>
